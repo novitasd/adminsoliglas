@@ -18,3 +18,7 @@ Crea un Static Site con `admin/` como Root Directory. Usa `npm install` como Bui
 En el servicio API, configura `ADMIN_ORIGIN` con el origen público exacto del panel (por ejemplo, `https://admin.soliglas.com`). El panel usa cookies de sesión y requiere que `PUBLIC_ORIGIN` y `ADMIN_ORIGIN` estén permitidos por el CORS del backend. Para producción se recomienda usar subdominios del mismo dominio raíz para el panel y la API.
 
 El sitio administrativo incorpora `noindex, nofollow`; la protección real depende de la sesión validada por la API.
+
+## Despliegue desde cPanel Git Version Control
+
+El archivo `.cpanel.yml` compila el panel con `npm ci` y `npm run build`, y copia `dist/` a `/home/soliglas/public_html/admin/`. La ruta base relativa de Vite permite servir el panel desde `/admin/`. Si la raíz pública o la carpeta destino de tu cuenta es distinta, actualiza `DEPLOYPATH` en `.cpanel.yml` antes de desplegar.
