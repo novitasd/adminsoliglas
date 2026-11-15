@@ -1,6 +1,6 @@
 const defaultApiUrl = import.meta.env.DEV
   ? "http://localhost:4000"
-  : "https://back-soliglas.onrender.com";
+  : "https://api.soliglas.com";
 const API_URL = (import.meta.env.VITE_API_URL || defaultApiUrl).replace(/\/$/, "");
 
 export async function api(path, options = {}) {

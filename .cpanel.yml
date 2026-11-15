@@ -2,7 +2,7 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/soliglas/public_html/admin
-    - export VITE_API_URL=https://back-soliglas.onrender.com
+    - export VITE_API_URL=https://api.soliglas.com
     - npm ci
     - npm run build
     - /bin/mkdir -p $DEPLOYPATH

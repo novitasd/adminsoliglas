@@ -13,12 +13,12 @@ El puerto 5174 coincide con `ADMIN_ORIGIN` predeterminado de la API. No cambies 
 
 ## Despliegue en Render
 
-Crea un Static Site con `admin/` como Root Directory. Usa `npm install` como Build Command y `npm run build` como Publish Command, con `dist` como Publish Directory. La URL de producción predeterminada es `https://back-soliglas.onrender.com`; también puedes definir `VITE_API_URL` con la URL pública de la API antes de compilar.
+Crea un Static Site con `admin/` como Root Directory. Usa `npm install` como Build Command y `npm run build` como Publish Command, con `dist` como Publish Directory. En producción, el panel usa `https://api.soliglas.com`; configura ese dominio personalizado para el servicio de API en Render antes de compilar.
 
-En el servicio API, configura `ADMIN_ORIGIN` con el origen público exacto del panel (por ejemplo, `https://admin.soliglas.com`). El panel usa cookies de sesión y requiere que `PUBLIC_ORIGIN` y `ADMIN_ORIGIN` estén permitidos por el CORS del backend. Para producción se recomienda usar subdominios del mismo dominio raíz para el panel y la API.
+En el servicio API, configura `ADMIN_ORIGIN=https://admin.soliglas.com` y `PUBLIC_ORIGIN` con el origen público exacto de la web. El panel usa cookies de sesión: el panel y la API deben estar bajo el mismo dominio raíz para que el navegador envíe la cookie `SameSite=Lax`.
 
 El sitio administrativo incorpora `noindex, nofollow`; la protección real depende de la sesión validada por la API.
 
 ## Despliegue desde cPanel Git Version Control
 
-El archivo `.cpanel.yml` compila el panel con `npm ci` y `npm run build`, y copia `dist/` a `/home/soliglas/public_html/admin/`. La ruta base relativa de Vite permite servir el panel desde `/admin/`. Si la raíz pública o la carpeta destino de tu cuenta es distinta, actualiza `DEPLOYPATH` en `.cpanel.yml` antes de desplegar.
+El archivo `.cpanel.yml` compila el panel con `npm ci` y `npm run build`, y copia `dist/` a `/home/soliglas/public_html/admin/`. La ruta base relativa de Vite permite servir el panel desde `/admin/`. Si la raíz pública o la carpeta destino de tu cuenta es distinta, actualiza `DEPLOYPATH` en `.cpanel.yml` antes de desplegar. El build usa `https://api.soliglas.com`; ese subdominio debe estar configurado en Render y en el DNS antes de desplegar el panel.
